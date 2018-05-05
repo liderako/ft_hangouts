@@ -28,16 +28,20 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
     private static boolean READ_CONTACTS_GRANTED = false;
+
     ListView contactList;
+
     ArrayList<String> contacts = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        contactList = (ListView) findViewById(R.id.contactList);
+
+        contactList = findViewById(R.id.contactList);
         // получаем разрешения
         int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
         // если устройство до API 23, устанавливаем разрешение
@@ -71,13 +75,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadContacts(){
+        Log.d("Load", "LoadContacts______________________________________________------------------");
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-        if(cursor != null){
+        if (cursor != null) {
+            Log.d("LOAD", "cursor != null");
             while (cursor.moveToNext()) {
-                // получаем каждый контакт
+//                 получаем каждый контак
+                cursor.moveToFirst();
                 String contact = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
                 // добавляем контакт в список
+                Log.d("LOAD", contact);
                 contacts.add(contact);
             }
             cursor.close();
