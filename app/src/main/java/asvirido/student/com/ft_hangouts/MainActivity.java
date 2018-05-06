@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private void loadContacts(){
         Log.d("Load", "LoadContacts______________________________________________------------------");
         ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URIgig, null, null, null, null);
         if (cursor != null) {
             Log.d("LOAD", "cursor != null");
             while (cursor.moveToNext()) {
