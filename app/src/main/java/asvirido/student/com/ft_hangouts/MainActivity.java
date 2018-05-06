@@ -1,5 +1,6 @@
 package asvirido.student.com.ft_hangouts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.Manifest;
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView contactList;
 
-    private static ArrayList<String> contacts = new ArrayList<String>();
+    private ArrayList<String> contacts = new ArrayList<String>();
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,17 @@ public class MainActivity extends AppCompatActivity {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contacts);
         contactList.setAdapter(adapter);
+
+        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                intent = new Intent(MainActivity.this, DescriptionActivity.class); //Заполняем Intent
+                intent.putExtra("Position", position);
+                intent.putExtra("Name", contacts.get(position));
+                Log.d("Intent", contacts.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 
