@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
     private static boolean READ_CONTACTS_GRANTED = false;
 
-    ListView contactList;
+    private ListView contactList;
 
-    ArrayList<String> contacts = new ArrayList<String>();
+    private static ArrayList<String> contacts = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         if (cursor != null) {
             Log.d("LOAD", "cursor != null");
-//            cursor.moveToFirst();
             while (cursor.moveToNext()) {
                 String contact = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
                 Log.d("LOAD", contact);
