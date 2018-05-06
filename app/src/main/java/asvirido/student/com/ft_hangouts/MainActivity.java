@@ -68,10 +68,7 @@ public class MainActivity extends AppCompatActivity {
         int id;
 
         id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return (true);
-        }
-        return super.onOptionsItemSelected(item);
+        return (id == R.id.action_settings || super.onOptionsItemSelected(item));
     }
 
     private void loadContacts(){
@@ -80,19 +77,15 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         if (cursor != null) {
             Log.d("LOAD", "cursor != null");
+//            cursor.moveToFirst();
             while (cursor.moveToNext()) {
-//                 получаем каждый контак
-                cursor.moveToFirst();
                 String contact = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
-                // добавляем контакт в список
                 Log.d("LOAD", contact);
                 contacts.add(contact);
             }
             cursor.close();
         }
-        // создаем адаптер
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contacts);
-        // устанавливаем для списка адаптер
         contactList.setAdapter(adapter);
     }
 
