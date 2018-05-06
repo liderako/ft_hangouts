@@ -75,14 +75,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadContacts(){
-        Log.d("Load", "LoadContacts______________________________________________------------------");
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
         if (cursor != null) {
-            Log.d("LOAD", "cursor != null");
             while (cursor.moveToNext()) {
                 String contact = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
-                Log.d("LOAD", contact);
                 contacts.add(contact);
             }
             cursor.close();
@@ -93,10 +90,8 @@ public class MainActivity extends AppCompatActivity {
         contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                intent = new Intent(MainActivity.this, DescriptionActivity.class); //Заполняем Intent
-                intent.putExtra("Position", position);
+                intent = new Intent(MainActivity.this, DescriptionActivity.class);
                 intent.putExtra("Name", contacts.get(position));
-                Log.d("Intent", contacts.get(position));
                 startActivity(intent);
             }
         });
