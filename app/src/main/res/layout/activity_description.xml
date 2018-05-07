@@ -10,55 +10,82 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="128dp"
-        android:layout_height="129dp"
+        android:layout_width="122dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
         android:background="@android:color/background_light"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/android"
-        tools:layout_editor_absoluteY="2dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/android" />
 
     <TextView
         android:id="@+id/nameView"
-        android:layout_width="145dp"
-        android:layout_height="32dp"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="148dp"
         android:background="@android:color/background_light"
-        tools:layout_editor_absoluteX="209dp"
-        tools:layout_editor_absoluteY="178dp" />
+        android:text="sometext"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/staticNameTextView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/staticNameTextView"
-        android:layout_width="137dp"
-        android:layout_height="32dp"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="148dp"
         android:background="@android:color/background_light"
         android:text="@string/text_name"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="178dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/staticPhoneNumberTextView"
-        android:layout_width="137dp"
-        android:layout_height="32dp"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/background_light"
         android:text="PhoneNumber"
         android:textAlignment="center"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="223dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/staticNameTextView" />
 
     <TextView
         android:id="@+id/phoneNumberView"
-        android:layout_width="145dp"
-        android:layout_height="32dp"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/background_light"
-        tools:layout_editor_absoluteX="209dp"
-        tools:layout_editor_absoluteY="225dp" />
+        android:text="sometext"
+        android:textAlignment="center"
+        app:layout_constraintStart_toEndOf="@+id/staticPhoneNumberTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nameView" />
 
-    <android.support.constraint.Group
-        android:id="@+id/group"
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_delete" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="phoneNumberView,staticPhoneNumberTextView" />
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
 </android.support.constraint.ConstraintLayout>
