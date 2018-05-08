@@ -51,7 +51,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/background_light"
-        android:text="PhoneNumber"
+        android:text="@string/text_phone"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/staticNameTextView" />
@@ -63,7 +63,6 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/background_light"
-        android:text="sometext"
         android:textAlignment="center"
         app:layout_constraintStart_toEndOf="@+id/staticPhoneNumberTextView"
         app:layout_constraintTop_toBottomOf="@+id/nameView" />

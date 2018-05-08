@@ -15,9 +15,6 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -80,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         loadPhoneNumberContact();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactsNameList);
         contactList.setAdapter(adapter);
+
         contactList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -110,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         if (cur.getCount() > 0) {
             while (cur.moveToNext()) {
                 String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
-
                 if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                     Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id, null, null);
                     while (phones.moveToNext()) {
@@ -122,6 +119,11 @@ public class MainActivity extends AppCompatActivity {
             }
             cur.close();
         }
+    }
+
+    public void changeActivity(View view) {
+        intent = new Intent(MainActivity.this, AddContactActivity.class);
+        startActivity(intent);
     }
 
 
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         if (READ_CONTACTS_GRANTED) {
             loadContacts();
         } else {
-            Toast.makeText(this, "Требуется установить разрешения", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.permission_one, Toast.LENGTH_LONG).show();
         }
     }
 }
