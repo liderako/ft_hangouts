@@ -42,13 +42,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         contactList = findViewById(R.id.contactList);
-        /* получаем разрешения */
         int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
-        /* если устройство до API 23, устанавливаем разрешение */
         if (hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
             READ_CONTACTS_GRANTED = true;
         } else {
-            // вызываем диалоговое окно для установки разрешений
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
         }
         if (READ_CONTACTS_GRANTED) {

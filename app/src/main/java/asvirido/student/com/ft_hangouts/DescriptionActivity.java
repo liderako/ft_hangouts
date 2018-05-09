@@ -1,13 +1,6 @@
 package asvirido.student.com.ft_hangouts;
 
-import android.Manifest;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.ContactsContract;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,27 +30,6 @@ public class DescriptionActivity extends AppCompatActivity {
         phoneNumberView.setText(phoneNumber);
     }
 
-    /* Get raw contact id by contact given name and family name.
-    *  Return raw contact id.
-    **/
-    private long getRawContactIdByName(String givenName) {
-        ContentResolver contentResolver = getContentResolver();
-        String queryColumnArr[] = {ContactsContract.RawContacts._ID};
-        String displayName = givenName;
-        String whereClause = ContactsContract.RawContacts.DISPLAY_NAME_PRIMARY + " = '" + displayName + "'";
-        Uri rawContactUri = ContactsContract.RawContacts.CONTENT_URI;
-        Cursor cursor = contentResolver.query(rawContactUri, queryColumnArr, whereClause, null, null);
-        long rawContactId = -1;
-        if(cursor!=null) {
-            int queryResultCount = cursor.getCount();
-            if(queryResultCount > 0) {
-                cursor.moveToFirst();
-                rawContactId = cursor.getLong(cursor.getColumnIndex(ContactsContract.RawContacts._ID));
-            }
-        }
-        return (rawContactId);
-    }
-
     public void editEvent(View view) {
         intent = new Intent(DescriptionActivity.this, EditActivity.class);
         intent.putExtra("Name", nameView.getText().toString());
@@ -69,32 +41,12 @@ public class DescriptionActivity extends AppCompatActivity {
         deleteContact(nameView.getText().toString());
     }
 
-    public void deleteContact(String _name) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            Log.d("onAddContact", "don't have permissions");
+    private void deleteContact(String name) {
+        ContactManager contactManager = new ContactManager(getContentResolver());
+        if (contactManager.checkPermissionWrite(this) == false) {
             return ;
         }
-        String name = _name;
-        long rawContactId = getRawContactIdByName(name);
-        ContentResolver contentResolver = getContentResolver();
-        Uri dataContentUri = ContactsContract.Data.CONTENT_URI;
-        StringBuffer dataWhereClauseBuf = new StringBuffer();
-        dataWhereClauseBuf.append(ContactsContract.Data.RAW_CONTACT_ID);
-        dataWhereClauseBuf.append(" = ");
-        dataWhereClauseBuf.append(rawContactId);
-        contentResolver.delete(dataContentUri, dataWhereClauseBuf.toString(), null);
-        Uri rawContactUri = ContactsContract.RawContacts.CONTENT_URI;
-        StringBuffer rawContactWhereClause = new StringBuffer();
-        rawContactWhereClause.append(ContactsContract.RawContacts._ID);
-        rawContactWhereClause.append(" = ");
-        rawContactWhereClause.append(rawContactId);
-        contentResolver.delete(rawContactUri, rawContactWhereClause.toString(), null);
-        Uri contactUri = ContactsContract.Contacts.CONTENT_URI;
-        StringBuffer contactWhereClause = new StringBuffer();
-        contactWhereClause.append(ContactsContract.Contacts._ID);
-        contactWhereClause.append(" = ");
-        contactWhereClause.append(rawContactId);
-        contentResolver.delete(contactUri, contactWhereClause.toString(), null);
+        contactManager.deleteContact(name);
         finish();
         intent = new Intent(DescriptionActivity.this, MainActivity.class);
         startActivity(intent);
