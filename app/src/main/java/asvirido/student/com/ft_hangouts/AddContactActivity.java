@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddContactActivity extends AppCompatActivity {
@@ -26,14 +27,16 @@ public class AddContactActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_WRITE_CONTACTS = 1;
     private static boolean WRITE_CONTACTS_GRANTED = false;
 
-
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
+
         contactNameText = findViewById(R.id.nameEditText);
         contactPhoneNumberText = findViewById(R.id.phoneEditText);
 
+        intent = getIntent();
         /* получаем разрешения */
         int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS);
         /* если устройство до API 23, устанавливаем разрешение */

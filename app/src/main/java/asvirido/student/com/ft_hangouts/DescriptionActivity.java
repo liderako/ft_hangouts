@@ -59,21 +59,23 @@ public class DescriptionActivity extends AppCompatActivity {
     }
 
     public void editEvent(View view) {
-//        finish();
-//        intent = new Intent(DescriptionActivity.this, DescriptionActivity.class);
-//        intent.putExtra("Name", contactsNameList.get(position));
-//        intent.putExtra("PhoneNumber", contactsPhoneList.get(position));
-//        startActivity(intent);
+        intent = new Intent(DescriptionActivity.this, EditActivity.class);
+        intent.putExtra("Name", nameView.getText().toString());
+        intent.putExtra("PhoneNumber", phoneNumberView.getText().toString());
+        startActivity(intent);
     }
 
     public void deleteContact(View view) {
+        deleteContact(nameView.getText().toString());
+    }
+
+    public void deleteContact(String _name) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             Log.d("onAddContact", "don't have permissions");
             return ;
         }
-        Log.d("delete", nameView.getText().toString());
-
-        long rawContactId = getRawContactIdByName(nameView.getText().toString());
+        String name = _name;
+        long rawContactId = getRawContactIdByName(name);
         ContentResolver contentResolver = getContentResolver();
         Uri dataContentUri = ContactsContract.Data.CONTENT_URI;
         StringBuffer dataWhereClauseBuf = new StringBuffer();
@@ -93,7 +95,6 @@ public class DescriptionActivity extends AppCompatActivity {
         contactWhereClause.append(" = ");
         contactWhereClause.append(rawContactId);
         contentResolver.delete(contactUri, contactWhereClause.toString(), null);
-
         finish();
         intent = new Intent(DescriptionActivity.this, MainActivity.class);
         startActivity(intent);
