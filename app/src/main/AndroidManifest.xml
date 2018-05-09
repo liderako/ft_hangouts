@@ -22,14 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".DescriptionActivity"
             android:label="ft_hangouts">
-        </activity>
 
+        </activity>
         <activity
             android:name=".AddContactActivity"
+            android:label="ft_hangouts">
+        </activity>
+        <activity android:name=".EditActivity"
             android:label="ft_hangouts">
         </activity>
     </application>

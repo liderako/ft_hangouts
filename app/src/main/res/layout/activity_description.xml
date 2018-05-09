@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="40dp"
+        android:onClick="deleteContact"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_delete" />
@@ -83,6 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
+        android:onClick="editEvent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_edit" />

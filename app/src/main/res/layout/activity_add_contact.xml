@@ -57,6 +57,7 @@
         android:background="@android:color/background_light"
         android:text="@string/text_phone"
         android:textAlignment="center"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/staticNameTextView" />
 

@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
     private static boolean READ_CONTACTS_GRANTED = false;
-
     private ListView contactList;
 
     private ArrayList<String> contactsNameList = new ArrayList<String>();
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             // вызываем диалоговое окно для установки разрешений
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
         }
-        // если разрешение установлено, загружаем контакты
         if (READ_CONTACTS_GRANTED) {
             loadContacts();
         }
@@ -140,6 +138,15 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, R.string.permission_one, Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent i = new Intent(MainActivity.this, MainActivity.class);  //your class
+        startActivity(i);
+        finish();
+
     }
 }
 
