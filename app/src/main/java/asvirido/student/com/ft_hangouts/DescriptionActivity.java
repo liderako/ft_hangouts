@@ -37,7 +37,7 @@ public class DescriptionActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void deleteContact(View view) {
+    public void deleteContactOnClick(View view) {
         deleteContact(nameView.getText().toString());
     }
 

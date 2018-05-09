@@ -34,7 +34,7 @@ public class AddContactActivity extends AppCompatActivity {
         }
     }
 
-    public void onAddContact(View v) {
+    public void onClickAddContact(View v) {
         String DisplayName = contactNameText.getText().toString();
         String MobileNumber = contactPhoneNumberText.getText().toString();
         addContact(DisplayName, MobileNumber);
