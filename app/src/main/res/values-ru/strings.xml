@@ -6,4 +6,6 @@
     <string name="text_phone">Номер телефона</string>
     <string name="permission_one">Требуется установить разрешения</string>
     <string name="phone_number_error">Ошибка номера телефона</string>
+    <string name="messager_text">Текст сообщения</string>
+    <string name="send_message">Отправить</string>
 </resources>

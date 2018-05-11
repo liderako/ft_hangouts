@@ -2,10 +2,10 @@ package asvirido.student.com.ft_hangouts;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +15,6 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -68,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadContacts() {
-        loadNameContact();
-        loadPhoneNumberContact();
+        load();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactsNameList);
         contactList.setAdapter(adapter);
 
@@ -79,41 +77,28 @@ public class MainActivity extends AppCompatActivity {
                     intent = new Intent(MainActivity.this, DescriptionActivity.class);
                     intent.putExtra("Name", contactsNameList.get(position));
                     intent.putExtra("PhoneNumber", contactsPhoneList.get(position));
+
+                    for (int i = 0; i < contactsNameList.size(); i++) {
+                        Log.d("ListName", contactsNameList.get(i));
+                        Log.d("ListPhone", contactsPhoneList.get(i));
+                    }
                     startActivity(intent);
                     return false;
             }
         });
     }
 
-    private void loadNameContact() {
-        ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                String contact = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
-                contactsNameList.add(contact);
-            }
-            cursor.close();
-        }
-    }
 
-    private void loadPhoneNumberContact() {
-        ContentResolver cr = getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null,null, null, null);
-        if (cur.getCount() > 0) {
-            while (cur.moveToNext()) {
-                String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
-                if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
-                    Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id, null, null);
-                    while (phones.moveToNext()) {
-                        String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        contactsPhoneList.add(phoneNumber);
-                    }
-                    phones.close();
-                }
-            }
-            cur.close();
+    private void load() {
+        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
+        while (phones.moveToNext())
+        {
+            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            contactsNameList.add(name);
+            contactsPhoneList.add(phoneNumber);
         }
+        phones.close();
     }
 
     public void changeActivity(View view) {

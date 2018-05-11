@@ -5,4 +5,6 @@
     <string name="text_phone">Phone number</string>
     <string name="permission_one">You need to set permissions</string>
     <string name="phone_number_error">Error phone number</string>
+    <string name="messager_text">Text messager</string>
+    <string name="send_message">Send</string>
 </resources>
