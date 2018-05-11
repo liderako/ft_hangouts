@@ -30,7 +30,7 @@ public class onReceiveIntent extends BroadcastReceiver {
                 }
                 String sender = messages[0].getOriginatingAddress();
                 String message = sb.toString();
-            Toast.makeText(context, sender + ": " + message, Toast.LENGTH_LONGg).show();
+            Toast.makeText(context, sender + ": " + message, Toast.LENGTH_LONG ).show();
             }
         }
     }
