@@ -7,4 +7,8 @@
         android:id="@+id/action_settings_blue"
         android:title="@string/action_settings_blue"
         />
+    <item
+        android:id="@+id/action_settings_green"
+        android:title="@string/action_settings_green"
+        />
 </menu>

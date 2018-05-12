@@ -2,6 +2,7 @@
     <string name="app_name">ft_hangouts</string>
     <string name="action_settings_blue">Blue</string>
     <string name="action_settings_red">Red</string>
+    <string name="action_settings_green">Green</string>
     <string name="text_name">Name</string>
     <string name="text_phone">Phone number</string>
     <string name="permission_one">You need to set permissions</string>
