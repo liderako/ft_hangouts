@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.971"
@@ -42,7 +42,6 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="124dp"
         android:background="@android:color/background_light"
-        android:text="sometext"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
@@ -65,26 +64,33 @@
         android:id="@+id/staticPhoneNumberTextView"
         android:layout_width="149dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="160dp"
         android:layout_marginTop="40dp"
         android:background="@android:color/background_light"
         android:text="@string/text_phone"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/staticNameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/staticNameTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/phoneNumberView"
         android:layout_width="149dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="160dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
         android:background="@android:color/background_light"
         android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/staticPhoneNumberTextView"
-        app:layout_constraintTop_toBottomOf="@+id/nameView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -109,5 +115,22 @@
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="78dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="callOnClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.692"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.971"
+        app:srcCompat="@android:drawable/ic_menu_call" />
 
 </android.support.constraint.ConstraintLayout>

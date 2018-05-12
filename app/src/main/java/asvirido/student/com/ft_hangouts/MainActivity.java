@@ -1,6 +1,8 @@
 package asvirido.student.com.ft_hangouts;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -9,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.ContentResolver;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
     private static boolean READ_CONTACTS_GRANTED = false;
+
     private ListView contactList;
 
     private ArrayList<String> contactsNameList = new ArrayList<String>();
@@ -37,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
-        contactList = findViewById(R.id.contactList);
+        this.contactList = findViewById(R.id.contactList);
         int hasReadContactPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
         if (hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
             READ_CONTACTS_GRANTED = true;
@@ -60,28 +62,26 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id;
-
-        id = item.getItemId();
-        return (id == R.id.action_settings || super.onOptionsItemSelected(item));
+        switch (item.getItemId()) {
+            case R.id.action_settings_red:
+                return true;
+            case R.id.action_settings_blue:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void loadContacts() {
         load();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contactsNameList);
         contactList.setAdapter(adapter);
-
         contactList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                     intent = new Intent(MainActivity.this, DescriptionActivity.class);
                     intent.putExtra("Name", contactsNameList.get(position));
                     intent.putExtra("PhoneNumber", contactsPhoneList.get(position));
-
-                    for (int i = 0; i < contactsNameList.size(); i++) {
-                        Log.d("ListName", contactsNameList.get(i));
-                        Log.d("ListPhone", contactsPhoneList.get(i));
-                    }
                     startActivity(intent);
                     return false;
             }
@@ -91,22 +91,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void load() {
         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
-        while (phones.moveToNext())
-        {
-            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            contactsNameList.add(name);
-            contactsPhoneList.add(phoneNumber);
+        try {
+            while (phones.moveToNext()) {
+                String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                this.contactsNameList.add(name);
+                this.contactsPhoneList.add(phoneNumber);
+            }
         }
-        phones.close();
+        catch (NullPointerException e) {
+            Log.d("error load", e.getMessage());
+        }
+        finally {
+            phones.close();
+        }
     }
 
     public void changeActivity(View view) {
         intent = new Intent(MainActivity.this, AddContactActivity.class);
         startActivity(intent);
     }
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         switch (requestCode) {

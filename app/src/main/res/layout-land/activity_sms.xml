@@ -10,15 +10,16 @@
         android:id="@+id/messageTextView"
         android:layout_width="wrap_content"
         android:layout_height="46dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginBottom="176dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.825" />
 
     <TextView
         android:id="@+id/textView"
@@ -32,9 +33,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <Button
         android:id="@+id/button"
@@ -46,8 +48,8 @@
         android:text="@string/send_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.57" />
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ft_hangouts</string>
-    <string name="action_settings">Настройки</string>
+    <string name="action_settings_blue">Синий</string>
+    <string name="action_settings_red">Красный</string>
     <string name="text_name">Имя</string>
     <string name="text_phone">Номер телефона</string>
     <string name="permission_one">Требуется установить разрешения</string>

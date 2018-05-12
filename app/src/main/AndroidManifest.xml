@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -27,26 +27,23 @@
         </activity>
         <activity
             android:name=".DescriptionActivity"
-            android:label="ft_hangouts">
-
-        </activity>
+            android:label="ft_hangouts"></activity>
         <activity
             android:name=".AddContactActivity"
-            android:label="ft_hangouts">
-
-        </activity>
+            android:label="ft_hangouts"></activity>
         <activity
             android:name=".EditActivity"
-            android:label="ft_hangouts">
+            android:label="ft_hangouts"></activity>
+        <activity android:name=".SmsActivity"></activity>
 
-        </activity>
-        <activity android:name=".SmsActivity">
-
-        </activity>
-        <receiver android:name="asvirido.student.com.ft_hangouts.onReceiveIntent" android:enabled="true">
+        <receiver
+            android:name=".onReceiveIntent"
+            android:enabled="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
     </application>
+
 </manifest>

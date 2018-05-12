@@ -3,9 +3,7 @@ package asvirido.student.com.ft_hangouts;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
