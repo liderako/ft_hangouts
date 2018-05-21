@@ -10,4 +10,5 @@
     <string name="phone_number_error">Ошибка номера телефона</string>
     <string name="messager_text">Текст сообщения</string>
     <string name="send_message">Отправить</string>
+    <string name="sms">Сообщение успешно отправлено!</string>
 </resources>

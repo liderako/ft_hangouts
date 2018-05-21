@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,11 +72,13 @@ public class SmsActivity extends AppCompatActivity {
     }
 
     private void sendMessage(String messageData) {
-        Intent intent = new Intent(getApplicationContext(), SmsActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0, intent,0);
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(this.phoneNumber, null, messageData, pi,null);
-        Toast.makeText(getApplicationContext(), "Message Sent successfully!", Toast.LENGTH_LONG).show();
+
+        if(!TextUtils.isEmpty(messageData) && !TextUtils.isEmpty(this.phoneNumber)) {
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(this.phoneNumber, null, messageData, null, null);
+                Toast.makeText(getApplicationContext(), R.string.sms, Toast.LENGTH_LONG).show();
+                finish();
+        }
     }
 
     @Override

@@ -28,7 +28,8 @@ public class DescriptionActivity extends AppCompatActivity {
     /* For permissions */
     private static final int REQUEST_CODE_CALL = 1;
     private static boolean CALL_CONTACTS_GRANTED = false;
-
+    private static final int REQUEST_CODE_WRITE = 2;
+    private static boolean WRITE_CONTACTS_GRANTED = false;
 
     /* For color */
     private static String colorBar;
@@ -53,6 +54,12 @@ public class DescriptionActivity extends AppCompatActivity {
             CALL_CONTACTS_GRANTED = true;
         } else {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CODE_CALL);
+        }
+        permission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CONTACTS);
+        if (permission == PackageManager.PERMISSION_GRANTED) {
+            WRITE_CONTACTS_GRANTED = true;
+        } else {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_CONTACTS}, REQUEST_CODE_WRITE);
         }
 
         String name = intent.getStringExtra("Name");
@@ -111,6 +118,10 @@ public class DescriptionActivity extends AppCompatActivity {
             case REQUEST_CODE_CALL:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     CALL_CONTACTS_GRANTED = true;
+                }
+            case REQUEST_CODE_WRITE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    WRITE_CONTACTS_GRANTED = true;
                 }
         }
         if (!CALL_CONTACTS_GRANTED) {

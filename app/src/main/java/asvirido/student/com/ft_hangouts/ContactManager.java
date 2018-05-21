@@ -76,6 +76,7 @@ public class ContactManager {
         contactWhereClause.append(rawContactId);
         contentResolver.delete(contactUri, contactWhereClause.toString(), null);
     }
+
     public boolean addContact(String name, String phoneNumber) {
         if ((phoneNumber.matches("[0-9_+]+")) == false) {
             return false;

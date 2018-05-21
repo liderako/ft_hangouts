@@ -9,4 +9,5 @@
     <string name="phone_number_error">Error phone number</string>
     <string name="messager_text">Text messager</string>
     <string name="send_message">Send</string>
+    <string name="sms">Message Sent successfully!</string>
 </resources>
